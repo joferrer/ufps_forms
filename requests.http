@@ -1,5 +1,5 @@
 ###
-POST http://localhost:3200/api/subir/ HTTP/1.1
+POST http://localhost:3200/api/poblacion/subir/ HTTP/1.1
 Content-Type: application/json
 
 {
@@ -7,7 +7,7 @@ Content-Type: application/json
     "nombre": "Graduados"
 }
 ###
-GET http://localhost:3200/api/poblaciones/
+GET http://localhost:3200/api/poblacion/poblaciones/
 
 ###
 POST http://localhost:3200/api/admin/login/ HTTP/1.1
@@ -20,3 +20,31 @@ Content-Type: application/json
 }
 ###
 GET http://localhost:3200/api/admin/registrados
+
+###
+DELETE http://localhost:3200/api/admin/eliminar/1 HTTP/1.1
+
+###
+GET http://localhost:3200/api/encuesta/encuestas
+
+###
+POST http://localhost:3200/api/encuesta/publicar/9 HTTP/1.1
+Content-Type: application/json
+
+{
+    "id_encuesta": 0,
+    "nombre": "Encuesta de nivel de satisfacción en la materia de AYD",
+    "porcentaje": 0,
+    "id_poblacion": 0
+}
+
+###
+POST http://localhost:3200/api/encuesta/publicar/110 HTTP/1.1
+Content-Type: application/json
+
+{
+    "id_encuesta": 0,
+    "nombre": "Encuesta de nivel de satisfacción en la materia de AYD",
+    "porcentaje": 0,
+    "id_poblacion": 0
+}

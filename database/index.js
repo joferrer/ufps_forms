@@ -13,6 +13,12 @@ const { promisify }= require('util');
 const encuestadoRoutes = require('./routes/encuestado');
 const poblacionRoutes = require('./routes/poblacion');
 const adminRoutes = require('./routes/administrador');
+const encuestaRoutes = require('./routes/encuesta');
+//const preguntasRoutes = require('./routes/pregunta');
+//const opcionesRoutes = require('./routes/opciones');
+//const respuestaRoutes = require('./routes/respuestas');
+
+
 
 // Puerto de despliegue.
 const port = process.env.PORT || 3200;
@@ -20,19 +26,27 @@ const port = process.env.PORT || 3200;
 // URI de la conexión a la DB. 
 const uri = process.env.MYSQL_URI;
 
+
 // Necesario para leer jsons. 
 app.use(express.json());
 app.use(express.urlencoded({extended: false}));
 
+
 // MIDDLEWARE
 app.use('/api', encuestadoRoutes);
-app.use('/api',poblacionRoutes);
+app.use('/api/poblacion',poblacionRoutes);
 app.use('/api/admin', adminRoutes);
+app.use('/api/encuesta',encuestaRoutes);
+//app.use('/api/opcion',);
 
 app.listen(port, ()=>{
     console.log(`Server listen in port ${port}`);
 } );
 
+
+/**
+ * CONEXION CON LA DB
+ */
 const pool =mysql.createPool({
     host: process.env.Host_dev,
     user: process.env.Username_dev,
@@ -71,3 +85,6 @@ pool.query = promisify(pool.query);
 
 module.exports.pool = pool;
 module.exports.query = pool.query;
+
+//Export fuera del modulo. Testing
+exports.app = app;

@@ -1,20 +1,14 @@
 
 const {Router} = require('express');
-const mysql = require('mysql2');
+
 
 const router = Router();
-//Database
-//import {pool} from '../index.js'
-const pool =mysql.createPool({
-    host: process.env.Host_dev,
-    user: process.env.Username_dev,
-    password: process.env.Password_dev,
-    database: process.env.data_base,
-    connectionLimit: 10,
-    ssl:{
-        rejectUnauthorized: true
-    }
-});
+
+//Pool de conexiones.
+const pool = require('../index.js');
+
+
+
 
 
 //const pool = module.pool;
@@ -31,19 +25,20 @@ router.get('/poblaciones',async (req,res)=>{
    
 
     
-    pool.getConnection( (err,conection)=>{
+    await pool.pool.getConnection( (err,conection)=>{
         //res.setHeader('Access-Control-Allow-Origin','*') ;
+        console.log('La conexion funciona 2');
         if(err){
-            res.status(400).send('Modelo fail: ' + err.message); 
+            res.status(400).send('Error de conexion a la DB: ' + err.message); 
             
         } 
         conection.query(sqlGet,(err,result)=>{
-            if(err)res.status(400).send('Modelo fail: ');   
+            if(err)res.status(400).send('Error en la consulara GET '+err.message);   
             else{
-                res.json(result);
+                res.status(200).json(result);
             }
         });
-        console.log('La conexion funciona 2');
+        
        conection.release();
     }
     )
@@ -57,13 +52,13 @@ router.post('/subir',async (req,res)=>{
     console.log('Crear poblacion');
     //res.setHeader('Access-Control-Allow-Origin','*') ;
     const poblacion = new modeloProyecto(req.body);
-    console.log(poblacion.toString());
+    //console.log(poblacion.toString());
 
     const sqlPost = `INSERT INTO POBLACIONES(nombre) VALUES("${poblacion.nombre}")`;
 
   
-    let statusP = 200;
-    pool.getConnection( (err,conection)=>{
+   
+    await pool.pool.getConnection( (err,conection)=>{
         if(err) res.status(400).send('Post fail :(')
         conection.query(sqlPost,(err)=>{
             if(err) res.status(400).send('Post fail :( ' + err.message) 
@@ -79,7 +74,36 @@ router.post('/subir',async (req,res)=>{
     //res.status(statusP).send('Modelo cool: '+statusP);
 });
 //update
-//Delate
+//DELETE ALL
+router.delete('/eliminarTodo',async (req,res)=>{
+    const {id} = req.params;
+    const deleteSql = `DELETE FROM POBLACIONES `;
+    await pool.pool.query(deleteSql, (err)=>{
+        if(err) {
+            res.send('DELETE FAIL :(');
+        }
+        else {
+            res.status(200).send('DELETE COOL :D');
+        }
+    });
+
+});
+
+//Delete con id
+router.delete('/eliminar/:id',async (req,res)=>{
+    const {id} = req.params;
+    const deleteSql = `DELETE FROM POBLACIONES WHERE id_poblacion = ${id}`;
+    await pool.pool.query(deleteSql, (err)=>{
+        if(err) {
+            res.send('DELETE FAIL :(');
+        }
+        else {
+            res.status(200).send('DELETE COOL :D');
+        }
+    });
+
+});
+
 
 //Exportar router
 module.exports = router;
