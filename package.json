@@ -4,6 +4,7 @@
   "description": "Sistema de encuestas",
   "main": "index.js",
   "scripts": {
+    "start": "node database/index.js",
     "dev": "nodemon database/index.js",
     "test": "mocha"
   },
