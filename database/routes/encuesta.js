@@ -8,7 +8,9 @@ const pool = require('../index.js');
 
 const modeloEncuesta = require('../../models/encuenta');
 
-
+/**
+ * GET de todas las encuestas en general. 
+ */
 router.get('/encuestas',async (req,res)=>{
 
     const sqlGet = 'SELECT * FROM ENCUESTAS';
@@ -33,15 +35,61 @@ router.get('/encuestas',async (req,res)=>{
    
 });
 
-//Encuesta de una poblacion. 
-router.get('/encuestas/:id',async (req,res)=>{});
+/**
+ * GET de todas las encuestas de una población por su id. 
+ * id: id de la poblacion. 
+ */
+router.get('/encuestas/:id',async (req,res)=>{
+    const {id} = req.params;//id de la población. 
+    const sqlGet= `SELECT * FROM ENCUESTAS WHERE id_poblacion = ${id}`;
+
+    await pool.pool.getConnection( (err,conection)=>{
+        //res.setHeader('Access-Control-Allow-Origin','*') ;
+        console.log('La conexion funciona 2');
+        if(err){
+            res.status(400).send('Error de conexion a la DB: ' + err.message); 
+            
+        } 
+        conection.query(sqlGet,(err,result)=>{
+            if(err)res.status(400).send('Error en la consulara GET '+err.message);   
+            else{
+                res.status(200).json(result);
+            }
+        });
+        
+       conection.release();
+    }
+    )
+});
 
 //Encuesta por id. 
-router.get('/encuestas/encuesta/:id',async (req,res)=>{});
+router.get('/encuestas/encuesta/:id',async (req,res)=>{
+    const {id} = req.params; //Id de la encuesta.
+    const sqlGet = `SELECT * FROM ENCUESTAS WHERE id_encuestas = ${id}`;
+    await pool.pool.getConnection( (err,conection)=>{
+        //res.setHeader('Access-Control-Allow-Origin','*') ;
+        console.log('La conexion funciona 2');
+        if(err){
+            res.status(400).send('Error de conexion a la DB: ' + err.message); 
+            
+        } 
+        conection.query(sqlGet,(err,result)=>{
+            if(err)res.status(400).send('Error en la consulta GET por id_encuesta '+err.message);   
+            else{
+                res.status(200).json(result);
+            }
+        });
+        
+       conection.release();
+    })
+});
 
-//Encuesta post.
+/**
+ * POST para publicar una encuesta. 
+ * id: id de la población asociada. Solo una población. 
+ */
 router.post('/publicar/:id',async (req,res)=>{
-    const {id} = req.params;
+    const {id} = req.params;// Población asociada. 
 
     //Comprobar que la población exista antes de asociarle una encuesta.
     const poblacionSQL = `SELECT * FROM POBLACIONES WHERE id_poblacion = ${id}`;

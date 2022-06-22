@@ -68,7 +68,7 @@ router.post('/subir',async (req,res)=>{
         console.log('La conexion funciona 2');
         conection.release();
     }
-    )
+    );
    
 
     //res.status(statusP).send('Modelo cool: '+statusP);
