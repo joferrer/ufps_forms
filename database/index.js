@@ -46,7 +46,9 @@ app.listen(port, ()=>{
     console.log(`Server listen in port ${port}`);
 } );
 
-//app.get('/',()=>{});
+app.get('/',(req,res)=>{
+  res.send('Hello!');
+});
 
 /**
  * CONEXION CON LA DB
