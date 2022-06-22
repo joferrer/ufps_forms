@@ -1,0 +1,38 @@
+html, body {
+  height: 100%;
+  width: 100%;
+  
+}
+
+.container{
+  background:#ffffff;
+  text-align:center;
+}
+
+#titulo{
+  color:white;
+}
+
+#cabecera{
+  background:#ed1d1d;
+  border-radius: 50px 50px 0px 0px;
+  border: 1px solid;
+}
+
+#cuerpo{
+  background:#eebbba;
+  border-radius: 0px 0px 50px 50px;
+  border: 1px solid;
+}
+
+.abs-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 40vh;
+}
+
+.form-label{
+  color:white;
+}
+

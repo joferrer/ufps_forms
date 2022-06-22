@@ -1,0 +1,39 @@
+
+
+#cabecera{
+  background:#ed1d1d;
+}
+
+#titulo{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+}
+
+#titulo2{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+#cuerpo{
+  background:#c5baba;
+  border-radius: 50px 50px 50px 50px;
+  border: 1px solid;
+  
+}
+#tmp{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.nav-item{
+  border: 1px solid;
+}
+
+#nav{
+  height:100%;
+  
+}
+
