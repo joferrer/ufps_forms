@@ -47,7 +47,7 @@ app.listen(port, ()=>{
 } );
 
 app.get('/',(req,res)=>{
-  res.send('Hello!');
+  res.redirect('../index.ejs');
 });
 
 /**
