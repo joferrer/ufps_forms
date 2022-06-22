@@ -40,10 +40,13 @@ app.use('/api/encuesta',encuestaRoutes);
 app.use('/api/pregunta',preguntasRoutes);
 //app.use('/api/opcion',);
 
+
+
 app.listen(port, ()=>{
     console.log(`Server listen in port ${port}`);
 } );
 
+//app.get('/',()=>{});
 
 /**
  * CONEXION CON LA DB
