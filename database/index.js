@@ -19,7 +19,7 @@ const adminRoutes = require('./routes/administrador');
 const encuestaRoutes = require('./routes/encuesta');
 const preguntasRoutes = require('./routes/pregunta');
 const opcionesRoutes = require('./routes/opciones');
-//const respuestaRoutes = require('./routes/respuestas');
+const respuestaRoutes = require('./routes/respuestas');
 
 
 
@@ -42,7 +42,7 @@ app.use('/api/admin', adminRoutes);
 app.use('/api/encuesta',encuestaRoutes);
 app.use('/api/pregunta',preguntasRoutes);
 app.use('/api/opcion',opcionesRoutes);
-
+app.use('/api/respuesta',respuestaRoutes);
 
 
 app.listen(port, ()=>{
