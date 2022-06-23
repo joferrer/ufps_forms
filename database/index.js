@@ -45,11 +45,12 @@ app.use('/api/pregunta',preguntasRoutes);
 app.listen(port, ()=>{
     console.log(`Server listen in port ${port}`);
 } );
-
-/**app.get('/',(req,res)=>{
-  res.redirect('../index.html');
+// View engine setup
+app.set('view engine', 'ejs');
+app.get('/',(req,res)=>{
+  res.render('../index.ejs');
 });
-**/
+
 /**
  * CONEXION CON LA DB
  */
