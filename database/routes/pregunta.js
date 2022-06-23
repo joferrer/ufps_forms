@@ -35,6 +35,33 @@ const modeloPregunta = require('../../models/pregunta');
    
 });
 /**
+ * GET de la pregunta con la id dada. 
+ * id: id de la pregunta que se quiere.
+ */
+ router.get('/pregunta/:id',async (req,res)=>{
+    const {id} = req.params; //id de la encuesta.
+    const sqlGet = `SELECT * FROM PREGUNTAS WHERE id_pregunta = ${id}`;
+    await pool.pool.getConnection( (err,conection)=>{
+        //res.setHeader('Access-Control-Allow-Origin','*') ;
+        console.log('La conexion funciona 2');
+        if(err){
+            res.status(400).send('Error de conexion a la DB: ' + err.message); 
+            
+        } 
+        conection.query(sqlGet,(err,result)=>{
+            if(err)res.status(400).send('Error al buscar las preguntas de la encuesta. '+err.message);   
+            else{
+                res.status(200).json(result);
+            }
+        });
+        
+       conection.release();
+    }
+    )
+    
+   
+});
+/**
  * Preguntas por encuesta. 
  * id: id de la encuesta de la cual se quieren las preguntas.
  */

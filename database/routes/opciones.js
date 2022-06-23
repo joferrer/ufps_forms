@@ -1,5 +1,5 @@
 const {Router} = require('express');
-
+const fetch = (...args) => import('node-fetch').then(({default: fetch}) => fetch(...args));
 
 const router = Router();
 
@@ -74,7 +74,7 @@ router.post('/agregaropcion/:id',async (req,res)=>{
     const {id} = req.params;//id de la pregunta asociada.
 
     
-    const peti = `${process.env.URL_API}pregunta/preguntas/${id}`;
+    const peti = `${process.env.URL_API}pregunta/pregunta/${id}`;
     
     console.log(peti+ "   **  " );
     let pregunta;
@@ -82,10 +82,10 @@ router.post('/agregaropcion/:id',async (req,res)=>{
         pregunta = await fetch(peti);
         pregunta = await pregunta.json();
         
-        if(encuesta.length != 1){
-            res.status(400).send('No se encontró la encuesta asociada.');
+        if(pregunta.length != 1){
+            res.status(400).send('No se encontró la pregunta asociada.');
         }
-        console.log(encuesta);
+        console.log(pregunta);
        
 
         const sqlPost = `INSERT INTO OPCIONES(texto, id_pregunta) VALUES("${req.body.texto}",${id}) `;

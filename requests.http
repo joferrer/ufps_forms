@@ -58,6 +58,9 @@ GET http://localhost:3200/api/pregunta/preguntas
 ###
 GET http://localhost:3200/api/pregunta/preguntas/1
 ###
+###
+GET http://localhost:3200/api/pregunta/pregunta/2
+###
 POST http://localhost:3200/api/pregunta/agregarpregunta/1 HTTP/1.1
 Content-Type: application/json
 
@@ -74,17 +77,18 @@ DELETE http://localhost:3200/api/pregunta/eliminar/1
 
 
 ###
-GET http://localhost:3200/api/opcion/opciones
-
+GET http://localhost:3200/api/opcion/opciones/
+###
+GET http://localhost:3200/api/opcion/opciones/1
 
 ###
-POST http://localhost:3200/api/opcion/opciones/1 HTTP/1.1
+POST http://localhost:3200/api/opcion/agregaropcion/2 HTTP/1.1
 Content-Type: application/json
 
 {
     "id_opcion": 0,
-    "texto": "Buena",
-    "id_pregunta": 0
+    "texto": "Mala",
+    "id_pregunta": 2
 }
 
 
