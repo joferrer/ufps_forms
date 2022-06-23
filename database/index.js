@@ -46,10 +46,10 @@ app.listen(port, ()=>{
     console.log(`Server listen in port ${port}`);
 } );
 // View engine setup
-app.set('view engine', 'ejs');
-app.get('/',(req,res)=>{
-  res.render('../index.ejs');
-});
+//app.set('view engine', 'ejs');
+/**app.get('/',(req,res)=>{
+  res.render('../index.html');
+});**/
 
 /**
  * CONEXION CON LA DB

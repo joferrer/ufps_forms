@@ -2,7 +2,7 @@
   "name": "ufps_forms",
   "version": "1.0.0",
   "description": "Sistema de encuestas",
-  "main": "index.js",
+  "main": "index.html",
   "scripts": {
     "start": "node database/index.js",
     "dev": "nodemon database/index.js",
