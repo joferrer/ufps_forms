@@ -18,7 +18,7 @@ const poblacionRoutes = require('./routes/poblacion');
 const adminRoutes = require('./routes/administrador');
 const encuestaRoutes = require('./routes/encuesta');
 const preguntasRoutes = require('./routes/pregunta');
-//const opcionesRoutes = require('./routes/opciones');
+const opcionesRoutes = require('./routes/opciones');
 //const respuestaRoutes = require('./routes/respuestas');
 
 
@@ -36,12 +36,12 @@ app.use(express.urlencoded({extended: false}));
 
 
 // MIDDLEWARE
-app.use('/api', encuestadoRoutes);
+app.use('/api/encuestado', encuestadoRoutes);
 app.use('/api/poblacion',poblacionRoutes);
 app.use('/api/admin', adminRoutes);
 app.use('/api/encuesta',encuestaRoutes);
 app.use('/api/pregunta',preguntasRoutes);
-//app.use('/api/opcion',);
+app.use('/api/opcion',opcionesRoutes);
 
 
 
@@ -68,7 +68,7 @@ const pool =mysql.createPool({
     database: process.env.data_base,
     connectionLimit: 10,
     ssl:{
-        rejectUnauthorized: true
+        rejectUnauthorized: false
     }
 });
 

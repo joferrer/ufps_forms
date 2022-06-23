@@ -7,6 +7,35 @@ const router = Router();
 const pool = require('../index.js');
 
 /**
+ * Opciones en general.
+ */
+ router.get('/opciones',async (req,res)=>{
+    
+    const sqlGet  = `SELECT * FROM OPCIONES `;
+
+    await pool.pool.getConnection( (err,conection)=>{
+        res.setHeader('Access-Control-Allow-Origin','*') ;
+        console.log('La conexion funciona 2');
+        if(err){
+            res.status(400).send('Error de conexion a la DB: ' + err.message); 
+            
+        } 
+        conection.query(sqlGet,(err,result)=>{
+            if(err)res.status(400).send('Error en la consulara GET '+err.message);   
+            else{
+                res.status(200).json(result);
+            }
+        });
+        
+       conection.release();
+    }
+    )
+
+
+
+});
+
+/**
  * Opciones por pregunta. 
  * id: id de las pregunta. 
  */
@@ -86,3 +115,4 @@ router.post('/agregaropcion/:id',async (req,res)=>{
 
 });
 
+module.exports = router;

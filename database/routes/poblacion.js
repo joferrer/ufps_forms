@@ -47,6 +47,36 @@ router.get('/poblaciones',async (req,res)=>{
     //res.status(200).send('Modelo cool: ');
     
 });
+router.get('/poblaciones/:id',async (req,res)=>{
+    console.log('Get poblaciones');
+    const {id} = req.params;
+    const sqlGet = `SELECT * FROM POBLACIONES WHERE id_poblacion = ${id}`
+    //res.status(200).send('Conectado.');
+   
+
+    
+    await pool.pool.getConnection( (err,conection)=>{
+        res.setHeader('Access-Control-Allow-Origin','*') ;
+        console.log('La conexion funciona 2');
+        if(err){
+            res.status(400).send('Error de conexion a la DB: ' + err.message); 
+            
+        } 
+        conection.query(sqlGet,(err,result)=>{
+            if(err)res.status(400).send('Error en la consulara GET '+err.message);   
+            else{
+                res.status(200).json(result);
+            }
+        });
+        
+       conection.release();
+    }
+    )
+
+
+    //res.status(200).send('Modelo cool: ');
+    
+});
 //Post
 router.post('/subir',async (req,res)=>{
     console.log('Crear poblacion');

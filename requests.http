@@ -6,7 +6,7 @@ Content-Type: application/json
 
 {
     "id_poblacion": 2,
-    "nombre": "Graduados"
+    "nombre": "Docentes"
 }
 ###
 GET http://localhost:3200/api/poblacion/poblaciones/
@@ -70,3 +70,33 @@ Content-Type: application/json
 
 ###
 DELETE http://localhost:3200/api/pregunta/eliminar/1
+
+
+
+###
+GET http://localhost:3200/api/opcion/opciones
+
+
+###
+POST http://localhost:3200/api/opcion/opciones/1 HTTP/1.1
+Content-Type: application/json
+
+{
+    "id_opcion": 0,
+    "texto": "Buena",
+    "id_pregunta": 0
+}
+
+
+###
+GET http://localhost:3200/api/encuestado/mostrar/11
+
+###
+POST http://localhost:3200/api/encuestado/registrar/11 HTTP/1.1
+Content-Type: application/json
+
+{
+    "id_encuestado": 0,
+    "correo": "nelsonbeltran@ufps.edu.co",
+    "id_poblacion": 0
+}
