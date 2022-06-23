@@ -46,10 +46,10 @@ app.listen(port, ()=>{
     console.log(`Server listen in port ${port}`);
 } );
 
-app.get('/',(req,res)=>{
+/**app.get('/',(req,res)=>{
   res.redirect('../index.html');
 });
-
+**/
 /**
  * CONEXION CON LA DB
  */
