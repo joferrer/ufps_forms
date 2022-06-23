@@ -53,7 +53,8 @@ Content-Type: application/json
     "porcentaje": 0,
     "id_poblacion": 0
 }
-
+###
+GET http://localhost:3200/api/pregunta/preguntas
 ###
 GET http://localhost:3200/api/pregunta/preguntas/1
 ###

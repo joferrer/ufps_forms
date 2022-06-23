@@ -15,7 +15,7 @@ router.get('/encuestas',async (req,res)=>{
 
     const sqlGet = 'SELECT * FROM ENCUESTAS';
     await pool.pool.getConnection( (err,conection)=>{
-        //res.setHeader('Access-Control-Allow-Origin','*') ;
+        res.setHeader('Access-Control-Allow-Origin','*') ;
         console.log('La conexion funciona 2');
         if(err){
             res.status(400).send('Error de conexion a la DB: ' + err.message); 
@@ -44,7 +44,7 @@ router.get('/encuestas/:id',async (req,res)=>{
     const sqlGet= `SELECT * FROM ENCUESTAS WHERE id_poblacion = ${id}`;
 
     await pool.pool.getConnection( (err,conection)=>{
-        //res.setHeader('Access-Control-Allow-Origin','*') ;
+        res.setHeader('Access-Control-Allow-Origin','*') ;
         console.log('La conexion funciona 2');
         if(err){
             res.status(400).send('Error de conexion a la DB: ' + err.message); 
