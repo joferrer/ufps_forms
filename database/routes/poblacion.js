@@ -26,7 +26,7 @@ router.get('/poblaciones',async (req,res)=>{
 
     
     await pool.pool.getConnection( (err,conection)=>{
-        //res.setHeader('Access-Control-Allow-Origin','*') ;
+        res.setHeader('Access-Control-Allow-Origin','*') ;
         console.log('La conexion funciona 2');
         if(err){
             res.status(400).send('Error de conexion a la DB: ' + err.message); 

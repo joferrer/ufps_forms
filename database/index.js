@@ -1,5 +1,8 @@
 require('dotenv').config();
 
+
+const fs = require('fs').promises;
+
 //Express
 const express = require('express');
 const app = express();
@@ -47,9 +50,13 @@ app.listen(port, ()=>{
 } );
 // View engine setup
 //app.set('view engine', 'ejs');
-/**app.get('/',(req,res)=>{
-  res.render('../index.html');
-});**/
+app.get('/',(req,res)=>{
+  
+  fs.readFile('index.html').then(contents =>{
+    res.setHeader("Content-Type", "text/html");
+    res.status(200).end(contents);  
+  });
+});
 
 /**
  * CONEXION CON LA DB
