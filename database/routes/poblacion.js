@@ -9,15 +9,14 @@ const pool = require('../index.js');
 
 
 
-
-
-//const pool = module.pool;
 //Modelo
 const modeloProyecto = require('../../models/poblacion');
 
 
 
-//Get
+/**
+ * Retorna todas las poblaciones existentes actualmente en el sistema. 
+ */
 router.get('/poblaciones',async (req,res)=>{
     console.log('Get poblaciones');
     const sqlGet = 'SELECT * FROM POBLACIONES'
@@ -47,6 +46,10 @@ router.get('/poblaciones',async (req,res)=>{
     //res.status(200).send('Modelo cool: ');
     
 });
+/**
+ * Retorna una poblacion data su id.
+ * id: id de la población que se está buscando. 
+ */
 router.get('/poblaciones/:id',async (req,res)=>{
     console.log('Get poblaciones');
     const {id} = req.params;

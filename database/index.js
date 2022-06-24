@@ -52,10 +52,7 @@ app.listen(port, ()=>{
 //app.set('view engine', 'ejs');
 app.get('/',(req,res)=>{
   
-  fs.readFile('index.html').then(contents =>{
-    res.setHeader("Content-Type", "text/html");
-    res.status(200).end(contents);  
-  });
+  res.status(200).send('Bienvenido a la API de UFPS-FORMS');
 });
 
 /**

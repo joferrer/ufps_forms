@@ -8,7 +8,9 @@ const pool = require('../index.js');
 
 //Modelo
 const modeloAdmin = require('../../models/administrador');
-//Get
+/**
+ * Retorna todos los administradores registrados.
+ */
 router.get('/registrados', async(req,res)=>{
      //console.log("Admin get conectado");
      const sqlGet = "SELECT * FROM ADMINISTRADORES";
@@ -23,7 +25,7 @@ router.get('/registrados', async(req,res)=>{
 })
 
 //Post
-router.post('/login', async (req,res)=>{
+router.post('/registrar', async (req,res)=>{
 
     const administrador = new  modeloAdmin(req.body);
     //console.log(administrador.toString());
