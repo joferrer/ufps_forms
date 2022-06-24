@@ -33,12 +33,14 @@ Las rutas de cada servicio son:
 
 Cada ruta da acceso a los servicios de su entidad correspondiente. Hasta ahora se tienen:
 
-## /api/encuestado --> Servicios de encuestado.
+## Servicios de encuestado.
 
 ### GET /api/encuestado/mostrar/:id -->(id = id_poblacion) 
+
 Retorna todos los encuestados de una población data en el params de la petición. 
 
 ### POST /api/encuestado/registrar/:id--> (id = id_poblacion) 
+
 Registra un encuestado a una población dada por petición. Tenga encuesta el siguiente body de ejemplo:
 
   Content-Type: application/json
@@ -50,9 +52,10 @@ Registra un encuestado a una población dada por petición. Tenga encuesta el si
   }
 
 
-## /api/poblacion --> Servicios de población.
+## Servicios de población.
 
 ### GET /api/poblacion/poblaciones
+
 Retornará todas las poblaciones actuales en el sistema.  
 
 ### GET /api/poblacion/poblaciones/:id -->(id = id_poblacion)
@@ -60,6 +63,7 @@ Retornará todas las poblaciones actuales en el sistema.
 Retornará la población identificada con la id correspondiente. 
 
 ### POST /api/poblacion/subir 
+
  Crea un población nueva en la base de datos. Tenga encuesta el siguiente body de ejemplo: 
 
   Content-Type: application/json
@@ -69,12 +73,16 @@ Retornará la población identificada con la id correspondiente.
     "nombre": "Docentes"
   }
 
-## /api/admin --> Servicios de administrador. 
+## Servicios de administrador. 
+
 
 ### GET /api/admin/registrados 
+
 Retorna todos los usuarios registrados como administrador. 
 
+
 ### POST /api/admin/registrar 
+
 Registra un nuevo administrador al sistema. Tenga en cuenta este body de ejemplo para su petición. 
 
   Content-Type: application/json
@@ -86,20 +94,27 @@ Registra un nuevo administrador al sistema. Tenga en cuenta este body de ejemplo
   }
 
 ### DELETE /api/admin/eliminar/:id --> (id: id_administrador) 
+
 Elimina un administrador de la base de datos. 
 
-## /api/encuesta --> Servicios de encuesta.
+## Servicios de encuesta.
 
 ### GET /api/encuesta/encuestas 
+
 Retorna todas las encuestas presentes en el sistema. 
 
 ### GET /api/encuesta/encuestas/:id (id: id_poblacion)
+
 Retorna todas las encuestas asociadas a una población dada.
 
 ### GET /api/encuesta/encuesta/:id (id: id_encuesta)
+
 Busca y retorna la encuesta identificada con la id dada. 
 
+
 ### POST /api/encuesta/publicar/:id (id: id_poblacion)
+
+
 Crea una nueva encuesta asociada la la población dada. Tenga en cuenta el siguiente body de ejemplo:
 
 Content-Type: application/json
@@ -110,3 +125,34 @@ Content-Type: application/json
     "porcentaje": 0,
     "id_poblacion": 0
 }
+
+## Servicios de pregunta.
+
+### GET /api/pregunta/preguntas 
+
+Retorna todas las preguntas del sistema. 
+
+### GET /api/pregunta/:id (id: id_pregunta)
+
+Busca y retorna una pregunta dada su id
+
+### GET /api/pregunta/preguntas/:id (id: id_encuesta)
+
+Busca y retorna todas las preguntas asociadas a una encuesta dada su id. 
+
+### POST /api/pregunta/agregarpregunta/:id (id: id_encuesta)
+
+Crea y asocia una pregunta a una encuesta dada su id. Tenga en cuenta el siguiente body de ejemplo: 
+
+Content-Type: application/json
+
+{
+    "id_pregunta": 0,
+    "enunciado": "¿Cuan satifecho esta con UFPS-FORMS?",
+    "tipo": 0,
+    "id_encuesta": 0
+}
+
+### DELETE /api/pregunta/eliminar/:id (id: id_pregunta)
+
+Elimina una pregunta dada su id. 
