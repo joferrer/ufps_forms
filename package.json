@@ -4,9 +4,9 @@
   "description": "Sistema de encuestas",
   "main": "index.js",
   "scripts": {
-    "start": "./node_modules/.bin/netlify-lambda serve database",
-    "build": "./node_modules/.bin/netlify-lambda build database",
-    "dev": "nodemon database/index.js",
+    "start": "./node_modules/.bin/netlify-lambda serve src",
+    "build": "./node_modules/.bin/netlify-lambda build src",
+    "dev": "nodemon src/database/index.js",
     "test": "mocha"
   },
   "author": "Grupo 14",
