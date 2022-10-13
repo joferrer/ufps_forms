@@ -1,4 +1,14 @@
-# ufps_forms
+# UFPS_FORMS
+
+## Composición 
+
+El repositorio cuenta con cuatro carpetas importante: 
+- database: En esta carpeta se encuetra el index.js y las routes del servido.
+- models: En esta carpeta están los modelos (Schemas) de los datos. 
+- node_module: En esta carpeta están los modulos de node.
+- test: En esta carpeta están las pruebas unitarias.
+
+
 
 ## Backend 
 Para el backend es necesario crear un documento .env para el uso de las variables de entorno. 

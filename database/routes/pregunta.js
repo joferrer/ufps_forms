@@ -39,7 +39,7 @@ const modeloPregunta = require('../../models/pregunta');
  * id: id de la pregunta que se quiere.
  */
  router.get('/pregunta/:id',async (req,res)=>{
-    const {id} = req.params; //id de la encuesta.
+    const {id} = req.params; //id de la pregunta.
     const sqlGet = `SELECT * FROM PREGUNTAS WHERE id_pregunta = ${id}`;
     await pool.pool.getConnection( (err,conection)=>{
         //res.setHeader('Access-Control-Allow-Origin','*') ;
