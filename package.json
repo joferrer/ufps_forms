@@ -5,7 +5,6 @@
   "main": "index.js",
   "scripts": {
     "start": "node src/database/index.js",
-    "build": "nodemon database/index.js",
     "dev": "nodemon src/database/index.js",
     "test": "mocha"
   },
