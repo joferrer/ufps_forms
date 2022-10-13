@@ -4,8 +4,8 @@
   "description": "Sistema de encuestas",
   "main": "index.js",
   "scripts": {
-    "start": "./node_modules/.bin/netlify-lambda serve src",
-    "build": "./node_modules/.bin/netlify-lambda build src",
+    "start": "node src/database/index.js",
+    "build": "nodemon database/index.js",
     "dev": "nodemon src/database/index.js",
     "test": "mocha"
   },

@@ -1,5 +1,5 @@
 require('dotenv').config();
-const serverless = require("serverless-http");
+
 
 
 
@@ -22,6 +22,7 @@ const encuestaRoutes = require('./routes/encuesta');
 const preguntasRoutes = require('./routes/pregunta');
 const opcionesRoutes = require('./routes/opciones');
 const respuestaRoutes = require('./routes/respuestas');
+
 
 
 
@@ -102,4 +103,3 @@ module.exports.query = pool.query;
 //Export fuera del modulo. Testing
 exports.app = app;
 
-module.exports.handler = serverless(app); 
