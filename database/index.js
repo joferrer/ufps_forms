@@ -1,4 +1,6 @@
 require('dotenv').config();
+const serverless = require("serverless-http");
+
 
 
 const fs = require('fs').promises;
@@ -38,7 +40,7 @@ app.use(express.urlencoded({extended: false}));
 // MIDDLEWARE
 app.use('/api/encuestado', encuestadoRoutes);
 app.use('/api/poblacion',poblacionRoutes);
-app.use('/api/admin', adminRoutes);
+app.use('/api/admin', adminRoutes); 
 app.use('/api/encuesta',encuestaRoutes);
 app.use('/api/pregunta',preguntasRoutes);
 app.use('/api/opcion',opcionesRoutes);
@@ -99,3 +101,5 @@ module.exports.query = pool.query;
 
 //Export fuera del modulo. Testing
 exports.app = app;
+
+module.exports.handler = serverless(app); 

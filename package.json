@@ -4,7 +4,8 @@
   "description": "Sistema de encuestas",
   "main": "index.js",
   "scripts": {
-    "start": "node database/index.js",
+    "start": "./node_modules/.bin/netlify-lambda serve database",
+    "build": "./node_modules/.bin/netlify-lambda build database",
     "dev": "nodemon database/index.js",
     "test": "mocha"
   },
@@ -23,9 +24,11 @@
     "morgan": "^1.10.0",
     "mysql": "^2.18.1",
     "mysql2": "^2.3.3",
+    "netlify-lambda": "^2.0.15",
     "node-fetch": "^3.2.6",
     "passport": "^0.6.0",
     "passport-local": "^1.0.0",
+    "serverless-http": "^3.0.3",
     "timeago.js": "^4.0.2"
   },
   "devDependencies": {
