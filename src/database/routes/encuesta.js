@@ -95,7 +95,9 @@ router.post('/publicar/:id',async (req,res)=>{
     const poblacionSQL = `SELECT * FROM POBLACIONES WHERE id_poblacion = ${id}`;
     
     const encuesta = new modeloEncuesta(req.body) ;
-    const postEncuesta = `INSERT INTO ENCUESTAS(nombre,porcentaje,id_poblacion) VALUES("${encuesta.nombre}",${encuesta.porcentaje},${id}) `;
+
+    //INSERT INTO ENCUESTAS (titulo,id_encuestas,id_poblacion,descripcion,fechacierre) VALUES("Encuesta de nivel de satisfacción en la materia de AYD",0,9,"Esta es es una encuesta que busca medir el nivel de satisfacción de los estudiantes de la UFPS.","2022-10-13 20:57:15.798");
+    const postEncuesta = `INSERT INTO ENCUESTAS(titulo,id_encuestas,id_poblacion,descripcion,fechacierre) VALUES("${encuesta.titulo}",${encuesta.id_encuesta},${id},"${encuesta.descripcion}","${encuesta.fechacierre}") `;
 
     await pool.pool.getConnection((err,conection)=>{
         if(err){
@@ -110,6 +112,7 @@ router.post('/publicar/:id',async (req,res)=>{
             else{
 
                 //Crear la encuesta asociada. 
+                console.log(postEncuesta);
                 conection.query(postEncuesta,(err)=>{
                     if(err) res.status(400).send('Post encuesta fail :( ' + err.message) 
                     else

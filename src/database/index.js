@@ -53,7 +53,7 @@ app.listen(port, ()=>{
 } );
 // View engine setup
 //app.set('view engine', 'ejs');
-app.get('/',(req,res)=>{
+app.get('/api',(req,res)=>{
   
   res.status(200).send('Bienvenido a la API de UFPS-FORMS');
 });
