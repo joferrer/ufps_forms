@@ -68,7 +68,7 @@ router.post('/registrar/:id',async (req,res)=>{
     const correo = req.body.correo;
     const nombre = req.body.nombre;
     const peti = `${process.env.URL_API}poblacion/poblaciones/${id}`;
-    
+    req.setHeader('Access-Control-Allow-Origin','*') ;
     console.log(peti+ "   **  " );
     let poblacion;
     try{
@@ -86,6 +86,8 @@ router.post('/registrar/:id',async (req,res)=>{
         console.log("SQL : "+ sqlPost);
 
         await pool.pool.getConnection( (err,conection)=>{
+            
+            res.setHeader('Access-Control-Allow-Origin','*') ;
             if(err) res.status(400).send('Post fail encuestado 1 :(')
             conection.query(sqlPost,(err)=>{
                 if(err) res.status(400).send('Post fail encuestado 2 :( ' + err.message) 
@@ -120,7 +122,7 @@ router.delete('/eliminar/encuestados:id', async (req, res)=>{
     const SLQ_DELETE = `DELETE FROM ENCUESTADOS WHERE id_poblacion = ${id}`;
     await pool.pool.query(SLQ_DELETE, (err)=>{
         if(err) {
-            res.send('DELETE FAIL :(');
+            res.status(400).send('DELETE FAIL :('+ err.message);
         }
         else {
             res.status(200).send('DELETE COOL :D');
