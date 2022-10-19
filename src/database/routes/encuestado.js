@@ -68,7 +68,7 @@ router.post('/registrar/:id',async (req,res)=>{
     const correo = req.body.correo;
     const nombre = req.body.nombre;
     const peti = `${process.env.URL_API}poblacion/poblaciones/${id}`;
-    req.setHeader('Access-Control-Allow-Origin','*') ;
+
     console.log(peti+ "   **  " );
     let poblacion;
     try{
