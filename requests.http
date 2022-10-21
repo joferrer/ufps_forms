@@ -107,6 +107,17 @@ Content-Type: application/json
     "id_poblacion": 11
 }
 
+###
+POST https://ufpsforms-production.up.railway.app/api/encuestado/registrar/10 HTTP/1.1
+Content-Type: application/json
+
+{
+    "id_encuestado": 0,
+    "nombre": "Brayan Steward",
+    "correo": "besgo@ufps.edu.co",
+    "id_poblacion": 10
+}
+
 
 ###
 GET http://localhost:3200/api/respuesta/respuestas/2

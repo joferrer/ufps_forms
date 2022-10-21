@@ -63,7 +63,7 @@ router.get('/mostrar/:id', async (req,res) =>{
  */
 router.post('/registrar/:id',async (req,res)=>{
     console.log('Crear encuestado');
-    res.setHeader('Access-Control-Allow-Origin','*') ;
+    //res.setHeader('Access-Control-Allow-Origin','*') ;
     const {id}   = req.params; //id de la poblacion.
     const correo = req.body.correo;
     const nombre = req.body.nombre;

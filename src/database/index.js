@@ -10,6 +10,7 @@ const express = require('express');
 const app = express();
 //Mysql2
 const mysql = require('mysql');
+const cors = require('cors')
 
 const { promisify }= require('util');
 
@@ -36,7 +37,7 @@ const uri = process.env.MYSQL_URI;
 // Necesario para leer jsons. 
 app.use(express.json());
 app.use(express.urlencoded({extended: false}));
-
+app.use(cors());
 
 // MIDDLEWARE
 app.use('/api/encuestado', encuestadoRoutes);
