@@ -117,10 +117,10 @@ router.post('/agregarpregunta/:id', async (req,res)=>{
 
         await pool.pool.getConnection( (err,conection)=>{
             if(err) res.status(400).send('Post fail pregunta 1 :(')
-            conection.query(sqlPost,(err)=>{
+            conection.query(sqlPost,(err,resp)=>{
                 if(err) res.status(400).send('Post fail pregunta :( ' + err.message) 
                 else
-                res.status(200).send('Post pregunta :)')
+                res.status(200).json(resp);
             });
             console.log('La conexion funciona 2');
             conection.release();
