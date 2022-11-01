@@ -113,10 +113,10 @@ router.post('/publicar/:id',async (req,res)=>{
 
                 //Crear la encuesta asociada. 
                 console.log(postEncuesta);
-                conection.query(postEncuesta,(err)=>{
+                conection.query(postEncuesta,(err,resp)=>{
                     if(err) res.status(400).send('Post encuesta fail :( ' + err.message) 
                     else
-                    res.status(200).send('Encuesta publicada.')
+                    res.status(200).json(resp);
                 });
                 
             }
