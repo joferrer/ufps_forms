@@ -132,7 +132,21 @@ router.post('/publicar/:id',async (req,res)=>{
 });
 
 //Encuesta DELETE
-router.delete('/eliminar/:id',async (req,res)=>{});
+router.delete('/eliminar/:id',async (req,res)=>{
+    const {id} = req.params;
+    const SQL = `DELETE FROM ENCUESTAS WHERE id_encuestas = ${id}`;
+    
+    await pool.pool.getConnection((err, conection)=>{
+        conection.query(SQL,(err, result)=>{
+            if(err)res.status(400).send('Fallo al encontrar la población '+err.message);
+
+            else{
+                res.status(200).send(`Encuesta ${id} eliminada de la db `)
+            }
+        })
+    })
+
+});
 
 //Encuesta PUT
 router.put('/publicar/:id',async (req,res)=>{});

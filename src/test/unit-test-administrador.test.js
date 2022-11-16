@@ -1,4 +1,4 @@
-const chai = require('chai');
+/**const chai = require('chai');
 const chaiHttp = require('chai-http');
 const { after } = require('mocha');
 
@@ -46,3 +46,4 @@ describe('Suit de testing para administrador', ()=>{
 })
 
 chai.request(app).delete('/api/admin/eliminarTodo').end();
+**/

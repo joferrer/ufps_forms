@@ -1,4 +1,4 @@
-const chai = require('chai');
+/**const chai = require('chai');
 const chaiHttp = require('chai-http');
 const { after } = require('mocha');
 
@@ -32,3 +32,4 @@ describe('Suit de testing para poblacion', ()=>{
 after(()=>{
     chai.request(app).delete('/api/poblacion/eliminarTodo').end();
 })
+**/
