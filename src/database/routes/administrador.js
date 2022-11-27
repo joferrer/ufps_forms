@@ -24,14 +24,30 @@ router.get('/registrados', async(req,res)=>{
      
 })
 
+/**
+ * Retorna el administrador con el correo asignado. 
+ */
+ router.get('/registrados/:correo', async(req,res)=>{
+    //console.log("Admin get conectado");
+    const {correo} = req.params;
+    const sqlGet = `SELECT * FROM ADMINISTRADOR WHERE correo = ${correo}`;
+    await pool.pool.query(sqlGet,(err,result)=>{
+        if(err)res.status(400).send('GET ADMINISTRADOR FAIL :( ');   
+            else{
+                res.status(200).json(result);
+            }
+    });
+    
+})
+
 //Post
 router.post('/registrar', async (req,res)=>{
 
     const administrador = new  modeloAdmin(req.body);
     //console.log(administrador.toString());
 
-    const sqlPost = `INSERT INTO ADMINISTRADORES(correo, contrasena) 
-    VALUES("${administrador.correo}", "${administrador.contrasena}")`;
+    const sqlPost = `INSERT INTO ADMINISTRADORES(correo) 
+    VALUES("${administrador.correo}")`;
 
     
     
