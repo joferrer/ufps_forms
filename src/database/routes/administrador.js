@@ -30,7 +30,7 @@ router.get('/registrados', async(req,res)=>{
  router.get('/registrados/:correo', async(req,res)=>{
     //console.log("Admin get conectado");
     const {correo} = req.params;
-    const sqlGet = `SELECT * FROM ADMINISTRADOR WHERE correo = "${correo}"`;
+    const sqlGet = `SELECT * FROM ADMINISTRADORES WHERE correo = "${correo}"`;
     await pool.pool.query(sqlGet,(err,result)=>{
         if(err)res.status(400).send('GET ADMINISTRADOR FAIL :( ');   
             else{
