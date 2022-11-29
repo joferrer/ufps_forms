@@ -42,7 +42,7 @@ router.get('/respuestas/:id', async (req,res)=>{
  */
  router.post('/responder',async (req,res)=>{
     const id = req.body.id_pregunta;//id de la pregunta asociada.
-
+    const id_encuestado = req.body.id_encuestado;
     
     const peti = `${process.env.URL_API}pregunta/pregunta/${id}`;
     
@@ -58,7 +58,7 @@ router.get('/respuestas/:id', async (req,res)=>{
         console.log(pregunta);
        
 
-        const sqlPost = `INSERT INTO RESPUESTAS(id_opcion, id_pregunta) VALUES(${req.body.id_opcion},${id}) `;
+        const sqlPost = `INSERT INTO RESPUESTAS(id_opcion, id_pregunta, id_encuestado) VALUES(${req.body.id_opcion},${id},${id_encuestado}) `;
         console.log("SQL : "+ sqlPost);
 
         await pool.pool.getConnection( (err,conection)=>{
