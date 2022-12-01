@@ -56,7 +56,6 @@ router.get('/respuestas/:id', async (req,res)=>{
             res.status(400).send('No se encontró la pregunta asociada a esa respuesta.');
         }
         console.log(pregunta);
-       
 
         const sqlPost = `INSERT INTO RESPUESTAS(id_opcion, id_pregunta, id_encuestado) VALUES(${req.body.id_opcion},${id},${id_encuestado}) `;
         console.log("SQL : "+ sqlPost);
